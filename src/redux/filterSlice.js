@@ -12,4 +12,4 @@ export const filterSlice = createSlice({
   },
 });
 
-export const { setFilter } = filterSlice.actions; 
+export const { searchAction } = filterSlice.actions; 

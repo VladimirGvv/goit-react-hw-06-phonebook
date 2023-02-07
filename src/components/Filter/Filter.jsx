@@ -1,20 +1,23 @@
-import { useDispatch} from 'react-redux';
-import { setFilter } from 'redux/filterSlice';
+import { useSelector, useDispatch} from 'react-redux';
+import { searchAction } from 'redux/filterSlice';
 
 import styles from './Filter.module.scss';
 
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const handlerFilterChange = evt => {
-    dispatch(setFilter(evt?.target?.value));
+
+  const filter = useSelector(state => state.filter.filter);
+
+  const handlerFilterChange = e => {
+    dispatch(searchAction(e.currentTarget.value));
   };
   return (
     <>
       <p>Find contacts by name</p>
       <input
         type="text"
-        name="filter"
+        value={filter}
         onChange={handlerFilterChange}
         className={styles.input}
       ></input>
