@@ -9,10 +9,6 @@ export const Contacts = () => {
   const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.filter.filter);
 
-  const handleDeleteContact = id => {
-    dispatch(deleteContacts(id));
-  };
-
   const normalizeFilter = filter.toLocaleLowerCase();
 
   const filterContacts = contacts.filter(contact => {
@@ -21,12 +17,12 @@ export const Contacts = () => {
 
   return (
      <ol className={styles.contacts}>
-     {filterContacts().map(({ name, number, id }) => (
+     {filterContacts().map(({ id, name, number }) => (
       <li key={id} className={styles.contacts_item}>
         {name}: {number}
         <button
           type="submit"
-          onClick={() => {handleDeleteContact({id})}}
+          onClick={() => dispatch(deleteContacts({ id }))}
           className={styles.btn}
         >
           Delete

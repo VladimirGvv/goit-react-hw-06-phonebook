@@ -11,12 +11,22 @@ export function PhoneForm () {
   const contacts = useSelector(state => state.contacts.contacts);
 
   const handleChangeName = e => {
-    setName(e.currentTarget.value);
+    const { value, name } = e.currentTarget;
+
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+
+      case 'number':
+        setNumber(value);
+        break;
+
+      default:
+        break;
+    }
   };
 
-  const handleChangeNumber = e=> {
-    setNumber(e.currentTarget.value);
-  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -53,7 +63,7 @@ export function PhoneForm () {
         Tel
         <input
           value={number}
-          onChange={handleChangeNumber}
+          onChange={handleChangeName}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
